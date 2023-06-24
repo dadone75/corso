@@ -1,0 +1,17 @@
+{
+    "name": "davide/corso",
+    "autoload": {
+        "psr-4": {
+            "Davide\\Corso\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "davide"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^10.2",
+        "phpstan/phpstan": "^1.10"
+    }
+}

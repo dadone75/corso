@@ -6,6 +6,7 @@ define('BASE_DIR', __DIR__);
 //posso richiamarla senza $ come le altre variabili
 require BASE_DIR.'/vendor/autoload.php';
 
+use Davide\Corso\Extras\Coinlore;
 use Davide\Corso\Extras\Automobile;
 use Davide\Corso\Extras\Automobile\FiatPunto;
 
@@ -17,6 +18,7 @@ $fiat_punto=new FiatPunto(75,230,180,190,"red",null);
 
 echo "<br>Volume Punto: {$fiat_punto->getVolume()}<br>";
 
-echo Binance::getPrice();
+echo Binance::getPrice()."<br>";
+echo Coinlore::getPrice();
 
 ?>

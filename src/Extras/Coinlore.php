@@ -1,13 +1,12 @@
 <?Php
 
-
 namespace Davide\Corso\Extras;
+
 use Davide\Corso\Interface\PriceInterface;
 
+class Coinlore implements PriceInterface{
 
-class Binance implements PriceInterface{
-
-    private static string $endpoint="https://data.binance.com/api/v3/ticker/24hr";
+    private static string $endpoint="https://api.coinlore.net/api/tickers";
     
 //uso il metodo statico e quindi non uso il costruttore
 //il self è come il this ma si usa per i metodi statici
@@ -16,17 +15,18 @@ class Binance implements PriceInterface{
 //accedo all'url e ottengo i dati
 //richiesta http get
 
-        $json = file_get_contents(self::$endpoint);
+    $json = file_get_contents(self::$endpoint);
 //decodifica il jason come array
 //mettendo true lo decodifica come array altrimenti lo decodifica comne oggetto
-
+        
         $obj = json_decode($json,true);
 
+        
         //filtro l'array passando il filtro che sto cercando
 
-        $price=array_filter($obj,function($symbol){
+        $price=array_filter($obj["data"],function($symbol){
 //restituisce la riga con il symbol che cerco. in questo caso il valore del bitcoin
-            return $symbol["symbol"]=="BTCUSDT";
+            return $symbol["symbol"]=="BTC";
             
             });
        
@@ -35,15 +35,8 @@ class Binance implements PriceInterface{
 //prendo la choiava lastPrice dell'array associativo.
 //converto a float per passare da stringa a numero Decimal
 
-        return (float)array_values($price)[0]["lastPrice"];
+        return (float)array_values($price)[0]["price_usd"];
 
     }
 
 }
-
-
-/*https://api.coinlore.net/api/tickers/
-symbol	"BTC"
-price_usd
-Coinlore.php
-*/

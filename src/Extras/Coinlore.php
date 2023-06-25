@@ -8,6 +8,12 @@ class Coinlore implements PriceInterface{
 
     private static string $endpoint="https://api.coinlore.net/api/tickers";
     
+    public static function make():self{
+
+        return new self();
+    
+    }
+    
 //uso il metodo statico e quindi non uso il costruttore
 //il self è come il this ma si usa per i metodi statici
 
